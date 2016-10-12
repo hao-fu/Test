@@ -1,30 +1,39 @@
 package edu.ucdavis.test;
 
-import android.app.FragmentManager;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import edu.ucdavis.test.FragmentTitle.OnTitleClickListener;
+
 import android.os.Bundle;
+import android.app.Activity;
+import android.app.FragmentTransaction;
+import android.database.sqlite.SQLiteDatabase;
+import android.view.Menu;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * Class: MainActivity
+ * Description:
+ * Authors: Hao Fu(haofu@ucdavis.edu)
+ * Date: 10/12/2016 1:55 PM
+ */
+public class MainActivity extends Activity implements OnTitleClickListener {
 
-    private BlankFragment mComposeFragment;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
 
 
+	}
 
-        FragmentManager fm = getFragmentManager();
-        mComposeFragment = (BlankFragment) fm.findFragmentByTag(BlankFragment.TAG);
-        if (mComposeFragment == null) {
-            mComposeFragment = new BlankFragment();
-        }
+	@Override
+	public void onTitleClick(String content) {
+		FragmentContent content2 = FragmentContent.getInstance(content);
+		getFragmentManager().beginTransaction()
+				.replace(R.id.mContent, content2).commit();
+	}
 
-        //fm.beginTransaction()
-                //.replace(R.id.content_frame, mComposeFragment, BlankFragment.TAG)
-                //.commit();
-    }
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+	}
 }
