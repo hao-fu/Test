@@ -32,6 +32,7 @@ public class FragmentContent extends Fragment {
 		mTextView.setText(strContent);
 		scrollView.addView(mTextView);
 		scrollView.setBackgroundColor(getResources().getColor(android.R.color.holo_blue_light));
+
 		return scrollView;
 	}
 
