@@ -4,8 +4,7 @@
     android:layout_height="match_parent"
     >
 
-    <fragment
-        class="edu.ucdavis.test.FragmentTitle"
+    <FrameLayout
         android:id="@+id/titleList"
         android:layout_width="0dip"
         android:layout_height="fill_parent"

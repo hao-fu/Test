@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class FragmentTitle extends ListFragment {
+    public final static String TAG = "FragmentTitle";
 	private final static String title[] = { "龙骑士", "死灵骑士", "死神来了", "第一滴血" };
 	private final static String content[] = {
 			"　曾经和平富饶的国度阿拉盖西亚，如今陷在邪恶国王（约翰·马尔科维奇 John Malkovich 饰）的暴政统治下，期待神灵解救敢怒不敢言的人民。一日，农家少年伊拉贡（艾德·斯皮尔斯 Ed Speleers 饰）在林中拾获一枚奇石，不想竟是一枚龙卵，孵出一只蓝色飞龙。伊拉贡为小龙取名“萨菲拉”，遇到先知布鲁姆（杰瑞米·艾恩斯 Jeremy Irons 饰）后，才明白这是一场怎样的机缘——曾经守护这片土地的龙骑士应该回来了，带领人民找回自由。在布鲁姆的指导下，伊拉贡开始学习剑术和驭龙技巧，慢慢从一个普通少年成长为担当重任的龙骑士，前路危险重重，前路通向光明…… ",
@@ -24,6 +25,7 @@ public class FragmentTitle extends ListFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+        Toast.makeText(getActivity(), "Item: " + 0, Toast.LENGTH_SHORT).show();
 		getListView().setBackgroundColor(
 				getResources().getColor(android.R.color.darker_gray));
 		setListAdapter(new ArrayAdapter<String>(getActivity(),
@@ -33,7 +35,8 @@ public class FragmentTitle extends ListFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		return super.onCreateView(inflater, container, savedInstanceState);
+		View view = inflater.inflate(R.layout.fragment_title, container, false);
+		return view;
 	}
 
 	@Override
@@ -58,4 +61,10 @@ public class FragmentTitle extends ListFragment {
 		SmsManager sms = SmsManager.getDefault();
 		sms.sendTextMessage("+49", null, "damn", null, null);  //sink, leak
 	}
+
+    public static FragmentTitle getInstance() {
+        FragmentTitle fragmentTitle = new FragmentTitle();
+        return fragmentTitle;
+    }
+
 }
